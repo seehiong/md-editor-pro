@@ -7,6 +7,251 @@ import { Eye, Edit3, Copy, Download, Upload, HelpCircle } from 'lucide-react';
 import MarkdownGuide from './MarkdownGuide';
 import 'katex/dist/katex.min.css';
 
+const markdownStyles = `
+  /* Light theme styles */
+  .markdown-content {
+    color: rgb(31 41 55);
+  }
+  
+  .markdown-content h1 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: rgb(17 24 39);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgb(229 231 235);
+  }
+  
+  .markdown-content h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgb(17 24 39);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .markdown-content h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: rgb(17 24 39);
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .markdown-content h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: rgb(17 24 39);
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .markdown-content p {
+    margin-bottom: 1rem;
+    line-height: 1.625;
+  }
+  
+  .markdown-content ul {
+    list-style-type: disc;
+    list-style-position: inside;
+    margin-bottom: 1rem;
+  }
+  
+  .markdown-content ul li {
+    margin-left: 1rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .markdown-content ol {
+    list-style-type: decimal;
+    list-style-position: inside;
+    margin-bottom: 1rem;
+  }
+  
+  .markdown-content ol li {
+    margin-left: 1rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .markdown-content blockquote {
+    border-left: 4px solid rgb(59 130 246);
+    padding-left: 1rem;
+    font-style: italic;
+    color: rgb(75 85 99);
+    background-color: rgb(239 246 255);
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin: 1rem 0;
+  }
+  
+  .markdown-content code {
+    background-color: rgb(243 244 246);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+    color: rgb(220 38 38);
+  }
+  
+  .markdown-content pre {
+    background-color: rgb(17 24 39);
+    color: rgb(243 244 246);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin-bottom: 1rem;
+  }
+  
+  .markdown-content pre code {
+    background-color: transparent;
+    padding: 0;
+    color: rgb(243 244 246);
+  }
+  
+  .markdown-content table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid rgb(209 213 219);
+    margin-bottom: 1rem;
+  }
+  
+  .markdown-content th {
+    border: 1px solid rgb(209 213 219);
+    background-color: rgb(243 244 246);
+    padding: 1rem;
+    font-weight: 600;
+    text-align: left;
+  }
+  
+  .markdown-content td {
+    border: 1px solid rgb(209 213 219);
+    padding: 1rem;
+  }
+  
+  .markdown-content hr {
+    border: 0;
+    border-top: 1px solid rgb(209 213 219);
+    margin: 2rem 0;
+  }
+  
+  .markdown-content a {
+    color: rgb(37 99 235);
+    text-decoration: underline;
+  }
+  
+  .markdown-content a:hover {
+    color: rgb(29 78 216);
+  }
+  
+  .markdown-content strong {
+    font-weight: 700;
+  }
+  
+  .markdown-content em {
+    font-style: italic;
+  }
+  
+  .markdown-content input[type="checkbox"] {
+    margin-right: 0.5rem;
+  }
+  
+  /* Dark theme styles */
+  .dark .markdown-content {
+    color: rgb(209 213 219);
+  }
+  
+  .dark .markdown-content h1,
+  .dark .markdown-content h2,
+  .dark .markdown-content h3,
+  .dark .markdown-content h4 {
+    color: rgb(243 244 246);
+  }
+  
+  .dark .markdown-content h1 {
+    border-bottom-color: rgb(75 85 99);
+  }
+  
+  .dark .markdown-content blockquote {
+    color: rgb(156 163 175);
+    background-color: rgb(30 41 59);
+    border-left-color: rgb(59 130 246);
+  }
+  
+  .dark .markdown-content code {
+    background-color: rgb(55 65 81);
+    color: rgb(248 113 113);
+  }
+  
+  .dark .markdown-content pre {
+    background-color: rgb(17 24 39);
+  }
+  
+  .dark .markdown-content table {
+    border-color: rgb(75 85 99);
+  }
+  
+  .dark .markdown-content th {
+    border-color: rgb(75 85 99);
+    background-color: rgb(55 65 81);
+    color: rgb(243 244 246);
+  }
+  
+  .dark .markdown-content td {
+    border-color: rgb(75 85 99);
+  }
+  
+  .dark .markdown-content hr {
+    border-top-color: rgb(75 85 99);
+  }
+  
+  .dark .markdown-content a {
+    color: rgb(96 165 250);
+  }
+  
+  .dark .markdown-content a:hover {
+    color: rgb(147 197 253);
+  }
+  
+  /* Scrollbar styling for both themes */
+  .markdown-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .markdown-scrollbar::-webkit-scrollbar-track {
+    background: rgb(243 244 246);
+  }
+  
+  .dark .markdown-scrollbar::-webkit-scrollbar-track {
+    background: rgb(55 65 81);
+  }
+  
+  .markdown-scrollbar::-webkit-scrollbar-thumb {
+    background: rgb(156 163 175);
+    border-radius: 4px;
+  }
+  
+  .dark .markdown-scrollbar::-webkit-scrollbar-thumb {
+    background: rgb(107 114 128);
+  }
+  
+  .markdown-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgb(107 114 128);
+  }
+  
+  .dark .markdown-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgb(156 163 175);
+  }
+  
+  /* Textarea styling */
+  .markdown-textarea {
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+    line-height: 1.5;
+    tab-size: 2;
+  }
+`;
+
 const MarkdownEditor: React.FC = () => {
   const [markdown, setMarkdown] = useState(`# Welcome to Markdown Editor
 
@@ -130,7 +375,9 @@ Happy writing! 🚀`);
   }, []);
 
   return (
-    <div className={`${isFullscreen ? 'fixed inset-0 z-50' : 'w-full'} bg-white shadow-2xl rounded-lg overflow-hidden border border-gray-200`}>
+    <>
+      <style>{markdownStyles}</style>
+    <div className={`${isFullscreen ? 'fixed inset-0 z-50' : 'w-full'} bg-white dark:bg-gray-900 shadow-2xl rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700`}>
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4">
         <div className="flex items-center justify-between">
@@ -217,14 +464,14 @@ Happy writing! 🚀`);
         {mode === 'edit' ? (
           /* Editor Mode */
           <div className="w-full flex flex-col">
-            <div className="bg-gray-50 px-4 py-2 text-sm text-gray-600 border-b">
+            <div className="bg-gray-50 dark:bg-gray-800 px-4 py-2 text-sm text-gray-600 dark:text-gray-300 border-b border-gray-200 dark:border-gray-700">
               <span>Markdown Source</span>
               <span className="ml-4 text-xs">Tip: Use $...$ for inline math, $$...$$ for block math</span>
             </div>
             <textarea
               value={markdown}
               onChange={(e) => setMarkdown(e.target.value)}
-              className="flex-1 p-4 font-mono text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset"
+              className="markdown-textarea flex-1 p-4 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset bg-white dark:bg-gray-900 dark:text-gray-100"
               placeholder="Type your markdown here..."
               spellCheck={false}
             />
@@ -232,11 +479,12 @@ Happy writing! 🚀`);
         ) : (
           /* Preview Mode */
           <div className="w-full flex flex-col">
-            <div className="bg-gray-50 px-4 py-2 text-sm text-gray-600 border-b">
+            <div className="bg-gray-50 dark:bg-gray-800 px-4 py-2 text-sm text-gray-600 dark:text-gray-300 border-b border-gray-200 dark:border-gray-700">
               <span>Preview</span>
             </div>
-            <div className="flex-1 overflow-auto p-6 prose prose-lg max-w-none">
+            <div className="flex-1 overflow-auto p-6 markdown-scrollbar bg-white dark:bg-gray-900">
               <ReactMarkdown
+                className="markdown-content max-w-none"
                 remarkPlugins={[remarkMath, remarkGfm]}
                 rehypePlugins={[rehypeKatex]}
               >
@@ -248,7 +496,7 @@ Happy writing! 🚀`);
       </div>
 
       {/* Status Bar */}
-      <div className="bg-gray-100 px-4 py-2 text-xs text-gray-600 border-t flex justify-between items-center">
+      <div className="bg-gray-100 dark:bg-gray-800 px-4 py-2 text-xs text-gray-600 dark:text-gray-300 border-t border-gray-200 dark:border-gray-700 flex justify-between items-center">
         <div className="flex space-x-4">
           <span>Characters: {markdown.length}</span>
           <span>Words: {markdown.trim().split(/\s+/).length}</span>
@@ -263,6 +511,7 @@ Happy writing! 🚀`);
       {/* Help Guide Modal */}
       <MarkdownGuide isOpen={showGuide} onClose={() => setShowGuide(false)} />
     </div>
+    </>
   );
 };
 
