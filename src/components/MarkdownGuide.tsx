@@ -51,6 +51,12 @@ const MarkdownGuide: React.FC<MarkdownGuideProps> = ({ isOpen, onClose }) => {
       icon: <Calculator size={16} />,
       syntax: 'Inline: $E = mc^2$\n\nBlock:\n$$\n\\int_0^1 x^2 dx = \\frac{1}{3}\n$$',
       description: 'Write mathematical equations using LaTeX syntax with KaTeX.'
+    },
+    {
+      title: 'PlantUML Diagrams',
+      icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></svg>,
+      syntax: '```plantuml\n@startuml\nAlice -> Bob: Hello!\nBob --> Alice: Hi there!\n@enduml\n```',
+      description: 'Create UML diagrams, flowcharts, and other diagrams using PlantUML syntax.'
     }
   ];
 
@@ -130,6 +136,10 @@ const MarkdownGuide: React.FC<MarkdownGuideProps> = ({ isOpen, onClose }) => {
                   <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
                   <span>Task lists: - [x] completed task, - [ ] incomplete task</span>
                 </li>
+                <li className="flex items-start">
+                  <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                  <span>PlantUML diagrams: Use ```plantuml code blocks for UML diagrams</span>
+                </li>
               </ul>
             </div>
 
@@ -148,6 +158,10 @@ const MarkdownGuide: React.FC<MarkdownGuideProps> = ({ isOpen, onClose }) => {
                 <div className="space-y-1">
                   <p className="font-medium text-gray-700">Math</p>
                   <p className="text-gray-600 font-mono">$inline$ $$block$$</p>
+                </div>
+                <div className="space-y-1">
+                  <p className="font-medium text-gray-700">Diagrams</p>
+                  <p className="text-gray-600 font-mono">```plantuml</p>
                 </div>
               </div>
             </div>

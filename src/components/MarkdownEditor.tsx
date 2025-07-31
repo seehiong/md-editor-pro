@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import remarkGfm from 'remark-gfm';
+import remarkSimplePlantUml from 'remark-simple-plantuml';
 import { Eye, Edit3, Copy, Download, Upload, HelpCircle } from 'lucide-react';
 import MarkdownGuide from './MarkdownGuide';
 import 'katex/dist/katex.min.css';
@@ -33,6 +34,32 @@ Complex equation:
 $$
 f(x) = \\sum_{n=0}^{\\infty} \\frac{f^{(n)}(a)}{n!}(x-a)^n
 $$
+
+## PlantUML Diagrams
+
+\`\`\`plantuml
+@startuml
+Alice -> Bob: Hello Bob, how are you?
+Bob --> Alice: I am good thanks!
+@enduml
+\`\`\`
+
+\`\`\`plantuml
+@startuml
+class User {
+  +String name
+  +String email
+  +login()
+  +logout()
+}
+
+class Admin {
+  +manageUsers()
+}
+
+User <|-- Admin
+@enduml
+\`\`\`
 
 ## Code Examples
 
@@ -211,7 +238,7 @@ Happy writing! 🚀`);
             </div>
             <div className="flex-1 overflow-auto p-6 prose prose-lg max-w-none">
               <ReactMarkdown
-                remarkPlugins={[remarkMath, remarkGfm]}
+                remarkPlugins={[remarkMath, remarkGfm, remarkSimplePlantUml]}
                 rehypePlugins={[rehypeKatex]}
               >
                 {markdown}
