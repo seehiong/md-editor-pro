@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mermaid-js/mermaid": "^10.6.1",
     "katex": "^0.16.22",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
