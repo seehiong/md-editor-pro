@@ -471,7 +471,7 @@ Happy writing! 🚀`);
               <textarea
                 value={markdown}
                 onChange={(e) => setMarkdown(e.target.value)}
-                className="flex-1 p-4 font-mono text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset"
+                className="markdown-textarea flex-1 p-4 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset bg-white dark:bg-gray-900 dark:text-gray-100"
                 placeholder="Type your markdown here..."
                 spellCheck={false}
               />
