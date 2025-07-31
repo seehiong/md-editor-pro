@@ -10,142 +10,177 @@ import 'katex/dist/katex.min.css';
 const markdownStyles = `
   /* Light theme styles */
   .markdown-content {
-    color: rgb(31 41 55);
+    color: #24292f;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    word-wrap: break-word;
   }
   
   .markdown-content h1 {
-    font-size: 1.875rem;
-    font-weight: 700;
-    color: rgb(17 24 39);
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid rgb(229 231 235);
+    font-size: 2rem;
+    font-weight: 600;
+    color: #24292f;
+    margin-top: 0;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #d1d9e0;
   }
   
   .markdown-content h2 {
     font-size: 1.5rem;
     font-weight: 600;
-    color: rgb(17 24 39);
-    margin-top: 1.5rem;
-    margin-bottom: 0.75rem;
+    color: #24292f;
+    margin-top: 24px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #d8dee4;
   }
   
   .markdown-content h3 {
     font-size: 1.25rem;
     font-weight: 600;
-    color: rgb(17 24 39);
-    margin-top: 1.25rem;
-    margin-bottom: 0.5rem;
+    color: #24292f;
+    margin-top: 24px;
+    margin-bottom: 16px;
   }
   
   .markdown-content h4 {
     font-size: 1.125rem;
     font-weight: 600;
-    color: rgb(17 24 39);
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
+    color: #24292f;
+    margin-top: 24px;
+    margin-bottom: 16px;
+  }
+  
+  .markdown-content h5 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #24292f;
+    margin-top: 24px;
+    margin-bottom: 16px;
+  }
+  
+  .markdown-content h6 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #656d76;
+    margin-top: 24px;
+    margin-bottom: 16px;
   }
   
   .markdown-content p {
-    margin-bottom: 1rem;
-    line-height: 1.625;
+    margin-top: 0;
+    margin-bottom: 16px;
   }
   
   .markdown-content ul {
-    list-style-type: disc;
-    list-style-position: inside;
-    margin-bottom: 1rem;
+    margin-top: 0;
+    margin-bottom: 16px;
+    padding-left: 2rem;
   }
   
   .markdown-content ul li {
-    margin-left: 1rem;
-    margin-bottom: 0.25rem;
+    list-style-type: disc;
+    margin-bottom: 4px;
+    word-wrap: break-all;
   }
   
   .markdown-content ol {
-    list-style-type: decimal;
-    list-style-position: inside;
-    margin-bottom: 1rem;
+    margin-top: 0;
+    margin-bottom: 16px;
+    padding-left: 2rem;
   }
   
   .markdown-content ol li {
-    margin-left: 1rem;
-    margin-bottom: 0.25rem;
+    list-style-type: decimal;
+    margin-bottom: 4px;
+    word-wrap: break-all;
   }
   
   .markdown-content blockquote {
-    border-left: 4px solid rgb(59 130 246);
-    padding-left: 1rem;
-    font-style: italic;
-    color: rgb(75 85 99);
-    background-color: rgb(239 246 255);
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    margin: 1rem 0;
+    margin: 0 0 16px 0;
+    padding: 0 1rem;
+    color: #656d76;
+    border-left: 0.25rem solid #d1d9e0;
   }
   
   .markdown-content code {
-    background-color: rgb(243 244 246);
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    font-size: 0.875rem;
-    font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
-    color: rgb(220 38 38);
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    white-space: break-spaces;
+    background-color: #afb8c133;
+    border-radius: 6px;
+    font-family: ui-monospace, SFMono-Regular, 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+    color: #24292f;
   }
   
   .markdown-content pre {
-    background-color: rgb(17 24 39);
-    color: rgb(243 244 246);
-    padding: 1rem;
-    border-radius: 0.5rem;
+    padding: 16px;
     overflow-x: auto;
-    margin-bottom: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f6f8fa;
+    border-radius: 6px;
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-family: ui-monospace, SFMono-Regular, 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+    color: #24292f;
+    border: 1px solid #d1d9e0;
   }
   
   .markdown-content pre code {
     background-color: transparent;
     padding: 0;
-    color: rgb(243 244 246);
+    margin: 0;
+    font-size: 100%;
+    color: inherit;
+    white-space: pre;
+    border: 0;
+    border-radius: 0;
   }
   
   .markdown-content table {
     width: 100%;
+    overflow: auto;
     border-collapse: collapse;
-    border: 1px solid rgb(209 213 219);
-    margin-bottom: 1rem;
+    margin-top: 0;
+    margin-bottom: 16px;
+    border-spacing: 0;
   }
   
   .markdown-content th {
-    border: 1px solid rgb(209 213 219);
-    background-color: rgb(243 244 246);
-    padding: 1rem;
+    padding: 6px 13px;
+    border: 1px solid #d1d9e0;
     font-weight: 600;
-    text-align: left;
+    background-color: #f6f8fa;
   }
   
   .markdown-content td {
-    border: 1px solid rgb(209 213 219);
-    padding: 1rem;
+    padding: 6px 13px;
+    border: 1px solid #d1d9e0;
   }
   
   .markdown-content hr {
+    height: 0.25em;
+    padding: 0;
+    margin: 24px 0;
+    background-color: #d1d9e0;
     border: 0;
-    border-top: 1px solid rgb(209 213 219);
-    margin: 2rem 0;
   }
   
   .markdown-content a {
-    color: rgb(37 99 235);
+    color: #0969da;
     text-decoration: underline;
   }
   
   .markdown-content a:hover {
-    color: rgb(29 78 216);
+    color: #0550ae;
   }
   
   .markdown-content strong {
-    font-weight: 700;
+    font-weight: 600;
   }
   
   .markdown-content em {
@@ -153,64 +188,96 @@ const markdownStyles = `
   }
   
   .markdown-content input[type="checkbox"] {
-    margin-right: 0.5rem;
+    margin: 0 0.2em 0.25em -1.4em;
+    vertical-align: middle;
+    accent-color: #0969da;
+  }
+  
+  .markdown-content del {
+    text-decoration: line-through;
+  }
+  
+  .markdown-content img {
+    max-width: 100%;
+    height: auto;
+    border-style: none;
+    box-sizing: content-box;
+    background-color: #ffffff;
   }
   
   /* Dark theme styles */
   .dark .markdown-content {
-    color: rgb(209 213 219);
+    color: #f0f6fc;
   }
   
   .dark .markdown-content h1,
   .dark .markdown-content h2,
   .dark .markdown-content h3,
-  .dark .markdown-content h4 {
-    color: rgb(243 244 246);
+  .dark .markdown-content h4,
+  .dark .markdown-content h5 {
+    color: #f0f6fc;
+  }
+  
+  .dark .markdown-content h6 {
+    color: #8d96a0;
   }
   
   .dark .markdown-content h1 {
-    border-bottom-color: rgb(75 85 99);
+    border-bottom-color: #30363d;
+  }
+  
+  .dark .markdown-content h2 {
+    border-bottom-color: #30363d;
   }
   
   .dark .markdown-content blockquote {
-    color: rgb(156 163 175);
-    background-color: rgb(30 41 59);
-    border-left-color: rgb(59 130 246);
+    color: #8d96a0;
+    border-left-color: #30363d;
   }
   
   .dark .markdown-content code {
-    background-color: rgb(55 65 81);
-    color: rgb(248 113 113);
+    background-color: #6e768166;
+    color: #f0f6fc;
   }
   
   .dark .markdown-content pre {
-    background-color: rgb(17 24 39);
+    background-color: #161b22;
+    color: #f0f6fc;
+    border-color: #30363d;
   }
   
   .dark .markdown-content table {
-    border-color: rgb(75 85 99);
+    border-color: #30363d;
   }
   
   .dark .markdown-content th {
-    border-color: rgb(75 85 99);
-    background-color: rgb(55 65 81);
-    color: rgb(243 244 246);
+    border-color: #30363d;
+    background-color: #21262d;
+    color: #f0f6fc;
   }
   
   .dark .markdown-content td {
-    border-color: rgb(75 85 99);
+    border-color: #30363d;
   }
   
   .dark .markdown-content hr {
-    border-top-color: rgb(75 85 99);
+    background-color: #30363d;
   }
   
   .dark .markdown-content a {
-    color: rgb(96 165 250);
+    color: #4493f8;
   }
   
   .dark .markdown-content a:hover {
-    color: rgb(147 197 253);
+    color: #58a6ff;
+  }
+  
+  .dark .markdown-content input[type="checkbox"] {
+    accent-color: #4493f8;
+  }
+  
+  .dark .markdown-content img {
+    background-color: #0d1117;
   }
   
   /* Scrollbar styling for both themes */
@@ -220,35 +287,36 @@ const markdownStyles = `
   }
   
   .markdown-scrollbar::-webkit-scrollbar-track {
-    background: rgb(243 244 246);
+    background: #f6f8fa;
   }
   
   .dark .markdown-scrollbar::-webkit-scrollbar-track {
-    background: rgb(55 65 81);
+    background: #21262d;
   }
   
   .markdown-scrollbar::-webkit-scrollbar-thumb {
-    background: rgb(156 163 175);
+    background: #d1d9e0;
     border-radius: 4px;
   }
   
   .dark .markdown-scrollbar::-webkit-scrollbar-thumb {
-    background: rgb(107 114 128);
+    background: #30363d;
   }
   
   .markdown-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: rgb(107 114 128);
+    background: #8d96a0;
   }
   
   .dark .markdown-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: rgb(156 163 175);
+    background: #484f58;
   }
   
   /* Textarea styling */
   .markdown-textarea {
-    font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+    font-family: ui-monospace, SFMono-Regular, 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
     line-height: 1.5;
     tab-size: 2;
+    font-size: 14px;
   }
 `;
 
