@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import mermaid from '@mermaid-js/mermaid';
+import mermaid from 'mermaid';
 
 interface MermaidDiagramProps {
   chart: string;
