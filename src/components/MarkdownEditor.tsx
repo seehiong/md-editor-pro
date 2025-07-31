@@ -483,13 +483,14 @@ Happy writing! 🚀`);
               <span>Preview</span>
             </div>
             <div className="flex-1 overflow-auto p-6 markdown-scrollbar bg-white dark:bg-gray-900">
-              <ReactMarkdown
-                className="markdown-content max-w-none"
-                remarkPlugins={[remarkMath, remarkGfm]}
-                rehypePlugins={[rehypeKatex]}
-              >
-                {markdown}
-              </ReactMarkdown>
+              <div className="markdown-content max-w-none">
+                <ReactMarkdown
+                  remarkPlugins={[remarkMath, remarkGfm]}
+                  rehypePlugins={[rehypeKatex]}
+                >
+                  {markdown}
+                </ReactMarkdown>
+              </div>
             </div>
           </div>
         )}
