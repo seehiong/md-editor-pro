@@ -207,7 +207,7 @@ const markdownStyles = `
   
   /* Dark theme styles */
   .dark .markdown-content {
-    color: #f0f6fc;
+    color: #e6edf3;
   }
   
   .dark .markdown-content h1,
@@ -219,31 +219,37 @@ const markdownStyles = `
   }
   
   .dark .markdown-content h6 {
-    color: #8d96a0;
+    color: #7d8590;
   }
   
   .dark .markdown-content h1 {
-    border-bottom-color: #30363d;
+    border-bottom-color: #21262d;
   }
   
   .dark .markdown-content h2 {
-    border-bottom-color: #30363d;
+    border-bottom-color: #21262d;
   }
   
   .dark .markdown-content blockquote {
-    color: #8d96a0;
+    color: #7d8590;
     border-left-color: #30363d;
+    background-color: #0d1117;
   }
   
   .dark .markdown-content code {
-    background-color: #6e768166;
-    color: #f0f6fc;
+    background-color: rgba(110, 118, 129, 0.4);
+    color: #f85149;
   }
   
   .dark .markdown-content pre {
-    background-color: #161b22;
-    color: #f0f6fc;
+    background-color: #0d1117;
+    color: #e6edf3;
     border-color: #30363d;
+  }
+  
+  .dark .markdown-content pre code {
+    color: #e6edf3;
+    background-color: transparent;
   }
   
   .dark .markdown-content table {
@@ -258,6 +264,7 @@ const markdownStyles = `
   
   .dark .markdown-content td {
     border-color: #30363d;
+    color: #e6edf3;
   }
   
   .dark .markdown-content hr {
@@ -265,15 +272,15 @@ const markdownStyles = `
   }
   
   .dark .markdown-content a {
-    color: #4493f8;
-  }
-  
-  .dark .markdown-content a:hover {
     color: #58a6ff;
   }
   
+  .dark .markdown-content a:hover {
+    color: #79c0ff;
+  }
+  
   .dark .markdown-content input[type="checkbox"] {
-    accent-color: #4493f8;
+    accent-color: #58a6ff;
   }
   
   .dark .markdown-content img {
@@ -532,14 +539,14 @@ Happy writing! 🚀`);
         {mode === 'edit' ? (
           /* Editor Mode */
           <div className="w-full flex flex-col">
-            <div className="bg-gray-50 px-4 py-2 text-sm text-gray-600 border-b">
+            <div className="bg-gray-50 dark:bg-[#21262d] px-4 py-2 text-sm text-gray-600 dark:text-[#7d8590] border-b dark:border-[#30363d]">
               <span>Markdown Source</span>
               <span className="ml-4 text-xs">Tip: Use $...$ for inline math, $$...$$ for block math</span>
             </div>
             <textarea
               value={markdown}
               onChange={(e) => setMarkdown(e.target.value)}
-              className="markdown-textarea flex-1 p-4 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset bg-white dark:bg-gray-900 dark:text-gray-100"
+              className="markdown-textarea flex-1 p-4 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset bg-white text-gray-900 dark:bg-[#0d1117] dark:text-[#e6edf3] dark:border-[#30363d]"
               placeholder="Type your markdown here..."
               spellCheck={false}
             />
@@ -547,10 +554,10 @@ Happy writing! 🚀`);
         ) : (
           /* Preview Mode */
           <div className="w-full flex flex-col">
-            <div className="bg-gray-50 px-4 py-2 text-sm text-gray-600 border-b">
+            <div className="bg-gray-50 dark:bg-[#21262d] px-4 py-2 text-sm text-gray-600 dark:text-[#7d8590] border-b dark:border-[#30363d]">
               <span>Preview</span>
             </div>
-            <div className="flex-1 overflow-auto p-6 markdown-scrollbar bg-white dark:bg-gray-900">
+            <div className="flex-1 overflow-auto p-6 markdown-scrollbar bg-white dark:bg-[#0d1117]">
               <div className="markdown-content max-w-none">
                 <ReactMarkdown
                   remarkPlugins={[remarkMath, remarkGfm]}
@@ -565,7 +572,7 @@ Happy writing! 🚀`);
       </div>
 
       {/* Status Bar */}
-      <div className="bg-gray-100 px-4 py-2 text-xs text-gray-600 border-t flex justify-between items-center">
+      <div className="bg-gray-100 dark:bg-[#21262d] px-4 py-2 text-xs text-gray-600 dark:text-[#7d8590] border-t dark:border-[#30363d] flex justify-between items-center">
         <div className="flex space-x-4">
           <span>Characters: {markdown.length}</span>
           <span>Words: {markdown.trim().split(/\s+/).length}</span>
