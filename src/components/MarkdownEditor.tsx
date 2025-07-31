@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import remarkGfm from 'remark-gfm';
+import MermaidDiagram from './MermaidDiagram';
 import { Eye, Edit3, Copy, Download, Upload, HelpCircle } from 'lucide-react';
 import MarkdownGuide from './MarkdownGuide';
 import 'katex/dist/katex.min.css';
@@ -356,28 +357,36 @@ $$
 
 ## PlantUML Diagrams
 
-\`\`\`plantuml
-@startuml
-Alice -> Bob: Hello Bob, how are you?
-Bob --> Alice: I am good thanks!
-@enduml
+## Mermaid Diagrams
+
+\`\`\`mermaid
+graph TD
+    A[Start] --> B{Is it working?}
+    B -->|Yes| C[Great!]
+    B -->|No| D[Debug]
+    D --> B
 \`\`\`
 
-\`\`\`plantuml
-@startuml
-class User {
-  +String name
-  +String email
-  +login()
-  +logout()
-}
+\`\`\`mermaid
+sequenceDiagram
+    participant A as Alice
+    participant B as Bob
+    A->>B: Hello Bob, how are you?
+    B-->>A: I am good thanks!
+\`\`\`
 
-class Admin {
-  +manageUsers()
-}
-
-User <|-- Admin
-@enduml
+\`\`\`mermaid
+classDiagram
+    class User {
+        +String name
+        +String email
+        +login()
+        +logout()
+    }
+    class Admin {
+        +manageUsers()
+    }
+    User <|-- Admin
 \`\`\`
 
 ## Code Examples
@@ -413,6 +422,26 @@ Happy writing! 🚀`);
   const [mode, setMode] = useState<'edit' | 'preview'>('edit');
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showGuide, setShowGuide] = useState(false);
+
+  // Custom renderer for code blocks to handle Mermaid diagrams
+  const components = {
+    code: ({ node, inline, className, children, ...props }: any) => {
+      const match = /language-(\w+)/.exec(className || '');
+      const language = match ? match[1] : '';
+      
+      if (!inline && language === 'mermaid') {
+        const chart = String(children).replace(/\n$/, '');
+        const id = Math.random().toString(36).substr(2, 9);
+        return <MermaidDiagram chart={chart} id={id} />;
+      }
+      
+      return (
+        <code className={className} {...props}>
+          {children}
+        </code>
+      );
+    }
+  };
 
   const handleCopy = useCallback(async () => {
     try {
@@ -562,6 +591,7 @@ Happy writing! 🚀`);
                 <ReactMarkdown
                   remarkPlugins={[remarkMath, remarkGfm]}
                   rehypePlugins={[rehypeKatex]}
+                  components={components}
                 >
                   {markdown}
                 </ReactMarkdown>
