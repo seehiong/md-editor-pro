@@ -428,13 +428,13 @@ Happy writing! 🚀`);
     code: ({ node, inline, className, children, ...props }: any) => {
       const match = /language-(\w+)/.exec(className || '');
       const language = match ? match[1] : '';
-      
+
       if (!inline && language === 'mermaid') {
         const chart = String(children).replace(/\n$/, '');
         const id = Math.random().toString(36).substr(2, 9);
         return <MermaidDiagram chart={chart} id={id} />;
       }
-      
+
       return (
         <code className={className} {...props}>
           {children}
@@ -481,142 +481,140 @@ Happy writing! 🚀`);
   return (
     <>
       <style>{markdownStyles}</style>
-    <div className={`${isFullscreen ? 'fixed inset-0 z-50' : 'w-full'} bg-white shadow-2xl rounded-lg overflow-hidden border border-gray-200`}>
-      {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4">
-        <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-bold">Markdown Editor</h1>
-          <div className="flex items-center space-x-2">
-            {/* File Operations */}
-            <button
-              onClick={() => setShowGuide(true)}
-              className="p-2 hover:bg-white/10 rounded-lg transition-colors"
-              title="Markdown Guide"
-            >
-              <HelpCircle size={20} />
-            </button>
-            <label className="cursor-pointer p-2 hover:bg-white/10 rounded-lg transition-colors">
-              <Upload size={20} />
-              <input
-                type="file"
-                accept=".md,.markdown"
-                onChange={handleFileUpload}
-                className="hidden"
-              />
-            </label>
-            <button
-              onClick={handleDownload}
-              className="p-2 hover:bg-white/10 rounded-lg transition-colors"
-              title="Download as .md file"
-            >
-              <Download size={20} />
-            </button>
-            <button
-              onClick={handleCopy}
-              className="p-2 hover:bg-white/10 rounded-lg transition-colors"
-              title="Copy to clipboard"
-            >
-              <Copy size={20} />
-            </button>
-            
-            {/* Mode Toggle */}
-            <div className="bg-white/10 rounded-lg p-1 flex">
+      <div className={`${isFullscreen ? 'fixed inset-0 z-50' : 'w-full'} bg-white shadow-2xl rounded-lg overflow-hidden border border-gray-200`}>
+        {/* Header */}
+        <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4">
+          <div className="flex items-center justify-between">
+            <h1 className="text-2xl font-bold">Markdown Editor</h1>
+            <div className="flex items-center space-x-2">
+              {/* File Operations */}
               <button
-                onClick={() => setMode('edit')}
-                className={`px-3 py-1 rounded flex items-center space-x-1 transition-all ${
-                  mode === 'edit' 
-                    ? 'bg-white text-blue-600 shadow-sm' 
-                    : 'text-white/80 hover:text-white'
-                }`}
+                onClick={() => setShowGuide(true)}
+                className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                title="Markdown Guide"
               >
-                <Edit3 size={16} />
-                <span>Edit</span>
+                <HelpCircle size={20} />
+              </button>
+              <label className="cursor-pointer p-2 hover:bg-white/10 rounded-lg transition-colors">
+                <Upload size={20} />
+                <input
+                  type="file"
+                  accept=".md,.markdown"
+                  onChange={handleFileUpload}
+                  className="hidden"
+                />
+              </label>
+              <button
+                onClick={handleDownload}
+                className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                title="Download as .md file"
+              >
+                <Download size={20} />
               </button>
               <button
-                onClick={() => setMode('preview')}
-                className={`px-3 py-1 rounded flex items-center space-x-1 transition-all ${
-                  mode === 'preview' 
-                    ? 'bg-white text-blue-600 shadow-sm' 
-                    : 'text-white/80 hover:text-white'
-                }`}
+                onClick={handleCopy}
+                className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                title="Copy to clipboard"
               >
-                <Eye size={16} />
-                <span>Preview</span>
+                <Copy size={20} />
+              </button>
+
+              {/* Mode Toggle */}
+              <div className="bg-white/10 rounded-lg p-1 flex">
+                <button
+                  onClick={() => setMode('edit')}
+                  className={`px-3 py-1 rounded flex items-center space-x-1 transition-all ${mode === 'edit'
+                    ? 'bg-white text-blue-600 shadow-sm'
+                    : 'text-white/80 hover:text-white'
+                    }`}
+                >
+                  <Edit3 size={16} />
+                  <span>Edit</span>
+                </button>
+                <button
+                  onClick={() => setMode('preview')}
+                  className={`px-3 py-1 rounded flex items-center space-x-1 transition-all ${mode === 'preview'
+                    ? 'bg-white text-blue-600 shadow-sm'
+                    : 'text-white/80 hover:text-white'
+                    }`}
+                >
+                  <Eye size={16} />
+                  <span>Preview</span>
+                </button>
+              </div>
+
+              {/* Fullscreen Toggle */}
+              <button
+                onClick={() => setIsFullscreen(!isFullscreen)}
+                className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                title="Toggle fullscreen"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  {isFullscreen ? (
+                    <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3" />
+                  ) : (
+                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
+                  )}
+                </svg>
               </button>
             </div>
-
-            {/* Fullscreen Toggle */}
-            <button
-              onClick={() => setIsFullscreen(!isFullscreen)}
-              className="p-2 hover:bg-white/10 rounded-lg transition-colors"
-              title="Toggle fullscreen"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                {isFullscreen ? (
-                  <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3" />
-                ) : (
-                  <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
-                )}
-              </svg>
-            </button>
           </div>
         </div>
-      </div>
 
-      {/* Content Area */}
-      <div className="flex h-96 md:h-[600px]">
-        {mode === 'edit' ? (
-          /* Editor Mode */
-          <div className="w-full flex flex-col">
-            <div className="bg-gray-50 dark:bg-[#21262d] px-4 py-2 text-sm text-gray-600 dark:text-[#7d8590] border-b dark:border-[#30363d]">
-              <span>Markdown Source</span>
-              <span className="ml-4 text-xs">Tip: Use $...$ for inline math, $$...$$ for block math</span>
+        {/* Content Area */}
+        <div className="flex h-96 md:h-[600px]">
+          {mode === 'edit' ? (
+            /* Editor Mode */
+            <div className="w-full flex flex-col">
+              <div className="bg-gray-50 dark:bg-[#21262d] px-4 py-2 text-sm text-gray-600 dark:text-[#7d8590] border-b dark:border-[#30363d]">
+                <span>Markdown Source</span>
+                <span className="ml-4 text-xs">Tip: Use $...$ for inline math, $$...$$ for block math</span>
+              </div>
+              <textarea
+                value={markdown}
+                onChange={(e) => setMarkdown(e.target.value)}
+                className="markdown-textarea flex-1 p-4 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset bg-white text-gray-900 dark:bg-[#0d1117] dark:text-[#e6edf3] dark:border-[#30363d]"
+                placeholder="Type your markdown here..."
+                spellCheck={false}
+              />
             </div>
-            <textarea
-              value={markdown}
-              onChange={(e) => setMarkdown(e.target.value)}
-              className="markdown-textarea flex-1 p-4 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset bg-white text-gray-900 dark:bg-[#0d1117] dark:text-[#e6edf3] dark:border-[#30363d]"
-              placeholder="Type your markdown here..."
-              spellCheck={false}
-            />
-          </div>
-        ) : (
-          /* Preview Mode */
-          <div className="w-full flex flex-col">
-            <div className="bg-gray-50 dark:bg-[#21262d] px-4 py-2 text-sm text-gray-600 dark:text-[#7d8590] border-b dark:border-[#30363d]">
-              <span>Preview</span>
-            </div>
-            <div className="flex-1 overflow-auto p-6 markdown-scrollbar bg-white dark:bg-[#0d1117]">
-              <div className="markdown-content max-w-none">
-                <ReactMarkdown
-                  remarkPlugins={[remarkMath, remarkGfm]}
-                  rehypePlugins={[rehypeKatex]}
-                  components={components}
-                >
-                  {markdown}
-                </ReactMarkdown>
+          ) : (
+            /* Preview Mode */
+            <div className="w-full flex flex-col">
+              <div className="bg-gray-50 dark:bg-[#21262d] px-4 py-2 text-sm text-gray-600 dark:text-[#7d8590] border-b dark:border-[#30363d]">
+                <span>Preview</span>
+              </div>
+              <div className="flex-1 overflow-auto p-6 markdown-scrollbar bg-white dark:bg-[#0d1117]">
+                <div className="markdown-content max-w-none">
+                  <ReactMarkdown
+                    remarkPlugins={[remarkMath, remarkGfm]}
+                    rehypePlugins={[rehypeKatex]}
+                    components={components}
+                  >
+                    {markdown}
+                  </ReactMarkdown>
+                </div>
               </div>
             </div>
+          )}
+        </div>
+
+        {/* Status Bar */}
+        <div className="bg-gray-100 dark:bg-[#21262d] px-4 py-2 text-xs text-gray-600 dark:text-[#7d8590] border-t dark:border-[#30363d] flex justify-between items-center">
+          <div className="flex space-x-4">
+            <span>Characters: {markdown.length}</span>
+            <span>Words: {markdown.trim().split(/\s+/).length}</span>
+            <span>Lines: {markdown.split('\n').length}</span>
           </div>
-        )}
-      </div>
-
-      {/* Status Bar */}
-      <div className="bg-gray-100 dark:bg-[#21262d] px-4 py-2 text-xs text-gray-600 dark:text-[#7d8590] border-t dark:border-[#30363d] flex justify-between items-center">
-        <div className="flex space-x-4">
-          <span>Characters: {markdown.length}</span>
-          <span>Words: {markdown.trim().split(/\s+/).length}</span>
-          <span>Lines: {markdown.split('\n').length}</span>
+          <div className="flex items-center space-x-2">
+            <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+            <span>Ready</span>
+          </div>
         </div>
-        <div className="flex items-center space-x-2">
-          <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-          <span>Ready</span>
-        </div>
-      </div>
 
-      {/* Help Guide Modal */}
-      <MarkdownGuide isOpen={showGuide} onClose={() => setShowGuide(false)} />
-    </div>
+        {/* Help Guide Modal */}
+        <MarkdownGuide isOpen={showGuide} onClose={() => setShowGuide(false)} />
+      </div>
     </>
   );
 };

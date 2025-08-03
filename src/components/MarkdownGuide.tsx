@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Hash, Bold, Italic, Link, List, Code, Table, Calculator } from 'lucide-react';
+import { X, Hash, Bold, Link, List, Code, Table, Calculator } from 'lucide-react';
 
 interface MarkdownGuideProps {
   isOpen: boolean;
@@ -54,7 +54,7 @@ const MarkdownGuide: React.FC<MarkdownGuideProps> = ({ isOpen, onClose }) => {
     },
     {
       title: 'PlantUML Diagrams',
-      icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></svg>,
+      icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><line x1="9" y1="9" x2="15" y2="15" /><line x1="15" y1="9" x2="9" y2="15" /></svg>,
       syntax: '```plantuml\n@startuml\nAlice -> Bob: Hello!\nBob --> Alice: Hi there!\n@enduml\n```',
       description: 'Create UML diagrams, flowcharts, and other diagrams using PlantUML syntax.'
     }
@@ -84,8 +84,8 @@ const MarkdownGuide: React.FC<MarkdownGuideProps> = ({ isOpen, onClose }) => {
             <div className="mb-8">
               <h3 className="text-xl font-semibold text-gray-900 mb-3">What is Markdown?</h3>
               <p className="text-gray-600 leading-relaxed">
-                Markdown is a lightweight markup language that allows you to format text using simple, 
-                readable syntax. It's widely used for documentation, README files, and content creation 
+                Markdown is a lightweight markup language that allows you to format text using simple,
+                readable syntax. It's widely used for documentation, README files, and content creation
                 because it's easy to write and converts beautifully to HTML.
               </p>
             </div>
@@ -173,9 +173,9 @@ const MarkdownGuide: React.FC<MarkdownGuideProps> = ({ isOpen, onClose }) => {
           <div className="flex items-center justify-between">
             <p className="text-sm text-gray-600">
               Need more help? Check out the{' '}
-              <a 
-                href="https://www.markdownguide.org/" 
-                target="_blank" 
+              <a
+                href="https://www.markdownguide.org/"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:text-blue-800 underline"
               >

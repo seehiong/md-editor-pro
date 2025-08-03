@@ -12,9 +12,9 @@ const MermaidDiagram: React.FC<MermaidDiagramProps> = ({ chart, id }) => {
   useEffect(() => {
     if (ref.current) {
       // Initialize mermaid with theme detection
-      const isDark = document.documentElement.classList.contains('dark') || 
-                    document.body.classList.contains('dark') ||
-                    ref.current.closest('.dark') !== null;
+      const isDark = document.documentElement.classList.contains('dark') ||
+        document.body.classList.contains('dark') ||
+        ref.current.closest('.dark') !== null;
 
       mermaid.initialize({
         startOnLoad: false,
@@ -48,7 +48,7 @@ const MermaidDiagram: React.FC<MermaidDiagramProps> = ({ chart, id }) => {
 
       // Clear previous content
       ref.current.innerHTML = '';
-      
+
       // Render the diagram
       mermaid.render(`mermaid-${id}`, chart).then(({ svg }) => {
         if (ref.current) {
@@ -69,8 +69,8 @@ const MermaidDiagram: React.FC<MermaidDiagramProps> = ({ chart, id }) => {
   }, [chart, id]);
 
   return (
-    <div 
-      ref={ref} 
+    <div
+      ref={ref}
       className="my-4 flex justify-center overflow-x-auto"
       style={{ minHeight: '100px' }}
     />
